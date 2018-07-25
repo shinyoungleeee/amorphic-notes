@@ -1,8 +1,1 @@
-.idea
 node_modules
-.postgres
-.redis
-apps/**/*.js
-apps/**/*.js.map
-dump.rdb
-download

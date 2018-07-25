@@ -13,7 +13,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata":true,
     "baseUrl": ".",
-    "watch": true,
     "sourceMap": true
   }
 }
