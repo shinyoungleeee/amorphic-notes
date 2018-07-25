@@ -1,26 +1,17 @@
 import * as express from 'express';
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
 import Note from '../../common/js/Note';
 
 const router = express.Router();
 
-router.use((req: Request, res: Response, next: NextFunction): void => {
-  console.log('Time: ', Date.now())
-  console.log('Next Object: ', next);
-  next()
-})
-
 router.post('/notes/create', async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
-    let msg = req.body.message;
-    let note = new Note(msg);
+    const reqBody: Note = req.body;
+    const note = new Note(reqBody.body);
     await note.save();
     return res.send('saved the note');
-  }
-  catch(error) {
-    console.log({ req: req, err: error })
+  } catch(error) {
     return res.status(500).send({ error: error.message });
   }
 });

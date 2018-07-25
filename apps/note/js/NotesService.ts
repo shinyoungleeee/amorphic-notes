@@ -1,6 +1,7 @@
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
 import { Express } from 'express';
+import * as bodyParser from 'body-parser';
+import * as morgan from 'morgan';
 
 import router from './router';
 
@@ -14,6 +15,7 @@ export default class NotesService {
     console.log('Starting server...');
 
     this.server
+      .use(morgan('combined'))
       .use(bodyParser.json())
       .use('/api/v1', router)
       .listen(port, () => console.log(`Listening on port ${port}`));
