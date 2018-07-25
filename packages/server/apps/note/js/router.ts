@@ -8,9 +8,10 @@ const router = express.Router();
 router.post('/notes/create', async (req: Request, res: Response) => {
   try {
     const reqBody: Note = req.body;
+    console.log(reqBody);
     const note = new Note(reqBody.body);
     await note.save();
-    return res.send('saved the note');
+    return res.json({ body: 'saved the note' });
   } catch(error) {
     return res.status(500).send({ error: error.message });
   }

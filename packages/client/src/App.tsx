@@ -4,6 +4,21 @@ import './App.css';
 import logo from './logo.svg';
 
 class App extends React.Component {
+  public componentDidMount() {
+    fetch('/api/v1/notes/create', {
+      body: JSON.stringify({ body: 'note made from React' }),
+      credentials: 'same-origin',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      method: 'POST'
+    }).then((response) => {
+      return response.json();
+    }).then((data) => {
+      console.log(data.body);
+    }).catch(error => console.error(error));
+  }
+
   public render() {
     return (
       <div className="App">
