@@ -1,6 +1,6 @@
 import { Supertype, supertypeClass, property, Persistable } from 'amorphic';
 
-@supertypeClass({ toClient: false, toServer: false })
+@supertypeClass
 export default class Note extends Persistable(Supertype) {
   @property()
   body: string;
