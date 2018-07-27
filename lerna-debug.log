@@ -1,0 +1,28 @@
+0 silly input [ 'start' ]
+1 silly flags { _: [ 'run' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   stream: true,
+1 silly flags   script: 'start',
+1 silly flags   args: [] }
+2 verbose rootPath /Users/shinyoung/amorphic-notes
+3 info version 2.11.0
+4 silly existsSync /Users/shinyoung/amorphic-notes/VERSION
+5 silly initialize attempt
+6 silly initialize success
+7 silly execute attempt
+8 silly runScriptInPackageStreaming [ 'start', [], 'client' ]
+9 silly getExecOpts { cwd: '/Users/shinyoung/amorphic-notes/packages/client' }
+10 silly runScriptInPackageStreaming [ 'start', [], 'server' ]
+11 silly getExecOpts { cwd: '/Users/shinyoung/amorphic-notes/packages/server' }
+12 error execute callback with error
+13 error Error: Command failed: yarn run start
+13 error (node:86515) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+13 error warning ../../package.json: No license field
+13 error error Command failed with exit code 1.
+13 error
+13 error $ react-scripts-ts start
+13 error When "proxy" is specified in package.json it must start with either http:// or https://
+13 error info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+13 error
+13 error     at Promise.all.then.arr (/Users/shinyoung/amorphic-notes/node_modules/execa/index.js:236:11)

@@ -3,5 +3,5 @@
 Run:
 - yarn install
 - redis-server
-- tsc
+- yarn compile
 - yarn start

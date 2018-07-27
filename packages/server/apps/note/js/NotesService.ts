@@ -11,7 +11,7 @@ export default class NotesService {
   constructor() {
     this.server = express();
 
-    let port = 3015;
+    let port = 8080;
     console.log('Starting server...');
 
     this.server
