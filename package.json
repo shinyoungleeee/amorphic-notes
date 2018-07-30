@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"scripts": {
 		"start": "lerna run start --stream",
+		"start:server": "lerna run start --stream --scope=server",
 		"compile": "lerna bootstrap && lerna run compile --stream"
 	},
 	"devDependencies": {
