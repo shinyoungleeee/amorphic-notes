@@ -11,20 +11,20 @@ router
     const reqBody: Note = req.body;
     const note = new Note(reqBody.body);
     note.save();
-    console.log('Note:', note.body);
-    return res.send("OK");
+    // TODO: Returns local version of note, not persisted note. Way to do this
+    // without persistor query?
+    return res.json(note.serialize());
   })
   // READ:
   .get('/', async (req: Request, res: Response) => {
     const notes: Note[] = await Note.all();
-    notes.forEach(note => console.log('Note:', note.body));
-    return res.send("OK");
+    const serializedNotes: object[] = notes.map(note => note.serialize());
+    return res.json(serializedNotes);
   })
   .get('/:id', async (req: Request, res: Response) => {
     const id: string = req.params.id;
     const note: Note = await Note.find(id);
-    console.log('Note:', note.body);
-    return res.send("OK");
+    return res.json(note.serialize());
   })
   // UPDATE:
   .patch('/:id', async (req: Request, res: Response) => {
@@ -35,16 +35,14 @@ router
     note.body = reqBody.body;
     await note.save();
 
-    console.log('Note:', note.body);
-    return res.send("OK");
+    return res.json(note.serialize());
   })
   // DESTROY:
   .delete('/:id', async (req: Request, res: Response) => {
     const id: string = req.params.id;
     const note: Note = await Note.find(id);
     note.delete();
-    console.log('Deleted note:', note.body);
-    return res.send("OK");
+    return res.json(note.serialize());
   });
 
 export default router;

@@ -1,4 +1,5 @@
 import { Supertype, supertypeClass, property, Persistable } from 'amorphic';
+import AmorphicSerializer from './AmorphicSerializer';
 
 @supertypeClass
 export default class Note extends Persistable(Supertype) {
@@ -13,13 +14,17 @@ export default class Note extends Persistable(Supertype) {
   public async save() {
     let txn = this.amorphic.begin();
     this.setDirty(txn);
-    this.amorphic.commit({ transaction: txn });
+    console.log(this.amorphic.commit({ transaction: txn }))
   }
 
   public async delete() {
     let txn = this.amorphic.begin();
     this.persistorDelete({ transaction: txn });
     this.amorphic.commit({ transaction: txn });
+  }
+
+  public serialize() {
+    return JSON.parse(AmorphicSerializer.amorphicSerialize(this));
   }
 
   static async all() {
