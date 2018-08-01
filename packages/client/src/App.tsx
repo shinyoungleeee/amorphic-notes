@@ -1,22 +1,28 @@
 import * as React from 'react';
+import AmorphicDeserializer from './deserialize/AmorphicDeserializer';
+
 import './App.css';
 
 import logo from './logo.svg';
 
-class App extends React.Component {
+export default class App extends React.Component {
+
+
   public componentDidMount() {
-    fetch('/api/v1/notes/create', {
-      body: JSON.stringify({ body: 'note made from React' }),
-      credentials: 'same-origin',
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-      method: 'POST'
-    }).then((response) => {
-      return response.json();
-    }).then((data) => {
-      console.log(data.body);
-    }).catch(error => console.error(error));
+    fetch('/api/v1/notes/5b5f141fd8ee5f364804a31e')
+    // fetch('/api/v1/notes', {
+    //   body: JSON.stringify({ body: 'a new note from React' }),
+    //   headers: {
+    //     "Content-Type": "application/json; charset=utf-8",
+    //   },
+    //   method: 'POST'
+    // })
+      .then(res => res.json())
+      .then(data => {
+        const obj = AmorphicDeserializer.deserialize(data, {});
+        console.log(obj);
+      })
+      .catch(error => console.error(error));
   }
 
   public render() {
@@ -33,5 +39,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

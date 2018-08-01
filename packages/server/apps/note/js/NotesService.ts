@@ -17,7 +17,7 @@ export default class NotesService {
     this.server
       .use(morgan('combined'))
       .use(bodyParser.json())
-      .use('/api/v1', router)
+      .use('/api/v1/notes', router)
       .listen(port, () => console.log(`Listening on port ${port}`));
   }
 }
