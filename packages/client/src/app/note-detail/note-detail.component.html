@@ -1,0 +1,11 @@
+<div *ngIf="note">
+  <h2>{{note.body | uppercase}} Details</h2>
+  <div><span>id: </span>{{note._id}}</div>
+  <div>
+    <label>body:
+      <input [(ngModel)]="note.body" placeholder="body"/>
+    </label>
+  </div>
+  <button (click)="save()">save</button>
+  <button (click)="goBack()">go back</button>
+</div>
