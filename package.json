@@ -4,7 +4,8 @@
 	"scripts": {
 		"start": "lerna run start --stream",
 		"start:server": "lerna run start --stream --scope=server",
-		"compile": "lerna bootstrap && lerna run compile --stream"
+		"compile": "lerna bootstrap && lerna run compile --stream",
+		"ng": "lerna exec --scope=client -- ng"
 	},
 	"devDependencies": {
 		"lerna": "^2.11.0"

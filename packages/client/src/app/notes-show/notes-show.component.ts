@@ -6,11 +6,11 @@ import { Note } from '../models';
 import { NoteService } from '../note.service';
 
 @Component({
-  selector: 'app-note-detail',
-  templateUrl: './note-detail.component.html',
-  styleUrls: ['./note-detail.component.css']
+  selector: 'app-notes-show',
+  templateUrl: './notes-show.component.html',
+  styleUrls: ['./notes-show.component.css']
 })
-export class NoteDetailComponent implements OnInit {
+export class NotesShowComponent implements OnInit {
   @Input() note: Note;
 
   constructor(
@@ -31,6 +31,11 @@ export class NoteDetailComponent implements OnInit {
 
   save(): void {
     this.noteService.updateNote(this.note)
+      .subscribe(() => this.goBack());
+  }
+
+  delete(): void {
+    this.noteService.deleteNote(this.note)
       .subscribe(() => this.goBack());
   }
 
