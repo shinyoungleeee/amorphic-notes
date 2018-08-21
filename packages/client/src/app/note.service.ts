@@ -46,11 +46,20 @@ export class NoteService {
     };
   }
 
+  /** POST: create the note on the server */
+  createNote(note: Note): Observable<Note> {
+    const url = this.notesUrl;
+    return this.http.post<Note>(url, note, httpOptions).pipe(
+      tap(_ => this.log(`created note`)),
+      catchError(this.handleError<any>('createNote'))
+    );
+  }
+
   /** GET notes from the server */
   getNotes(): Observable<Note[]> {
     return this.http.get<Note[]>(this.notesUrl)
       .pipe(
-        tap(notes => this.log('fetched notes')),
+        tap(_ => this.log('fetched notes')),
         catchError(this.handleError('getNotes', []))
       );
   }
@@ -72,4 +81,13 @@ export class NoteService {
       catchError(this.handleError<any>('updateNote'))
     );
   }
+
+    /** POST: create the note on the server */
+    deleteNote(note: Note): Observable<Note> {
+      const url = `${this.notesUrl}/${note._id}`;
+      return this.http.delete<Note>(url, httpOptions).pipe(
+        tap(_ => this.log(`deleted note id=${note._id}`)),
+        catchError(this.handleError<any>('deleteNote'))
+      );
+    }
 }

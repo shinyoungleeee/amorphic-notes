@@ -14,13 +14,15 @@ export default class Note extends Persistable(Supertype) {
   public async save() {
     let txn = this.amorphic.begin();
     this.setDirty(txn);
-    console.log(this.amorphic.commit({ transaction: txn }))
+    await this.amorphic.commit({ transaction: txn });
+    return this;
   }
 
   public async delete() {
     let txn = this.amorphic.begin();
     this.persistorDelete({ transaction: txn });
-    this.amorphic.commit({ transaction: txn });
+    await this.amorphic.commit({ transaction: txn });
+    return this;
   }
 
   public serialize() {
@@ -28,7 +30,7 @@ export default class Note extends Persistable(Supertype) {
   }
 
   static async all() {
-    try { return this.persistorFetchByQuery() }
+    try { return this.persistorFetchByQuery({}) }
     catch(e) { console.log(e) };
   }
 

@@ -9,10 +9,8 @@ notesRouter
   // CREATE:
   .post('/', async (req: Request, res: Response) => {
     const reqBody: Note = req.body;
-    const note = new Note(reqBody.body);
-    note.save();
-    // TODO: Returns local version of note, not persisted note. Way to do this
-    // without persistor query?
+    let note = new Note(reqBody.body);
+    note = await note.save();
     return res.json(note.serialize());
   })
   // READ:
@@ -40,8 +38,8 @@ notesRouter
   // DESTROY:
   .delete('/:id', async (req: Request, res: Response) => {
     const id: string = req.params.id;
-    const note: Note = await Note.find(id);
-    note.delete();
+    let note: Note = await Note.find(id);
+    note = await note.delete();
     return res.json(note.serialize());
   });
 
