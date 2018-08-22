@@ -5,7 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -34,8 +36,10 @@ import { NavbarComponent } from './navbar/navbar.component';
         HttpClientModule,
         BrowserAnimationsModule,
         MatButtonModule,
-        MatGridListModule
-    ]
+        MatGridListModule,
+        MatFormFieldModule,
+        MatInputModule
+    ],
     providers: [],
     bootstrap: [AppComponent]
 })
