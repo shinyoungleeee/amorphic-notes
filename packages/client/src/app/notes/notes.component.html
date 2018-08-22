@@ -1,11 +1,7 @@
 <h2>My Notes</h2>
-
-<ul class="notes">
-  <li *ngFor="let note of notes"
-    [class.selected]="note === selectedNote"
-    (click)="onSelect(note)">
-    <a routerLink="/notes/{{note._id}}">
-      <span class="badge">{{note._id}}</span>{{note.body}}
-    </a>
-  </li>
-</ul>
+<mat-grid-list cols="4">
+  <mat-grid-tile *ngFor="let note of notes" routerLink="/notes/{{note._id}}">
+    <mat-grid-tile-header>{{note._id}}</mat-grid-tile-header>
+    {{note.body}}
+  </mat-grid-tile>
+</mat-grid-list>
