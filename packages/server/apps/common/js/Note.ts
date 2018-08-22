@@ -4,10 +4,14 @@ import AmorphicSerializer from './AmorphicSerializer';
 @supertypeClass
 export default class Note extends Persistable(Supertype) {
   @property()
+  title: string;
+
+  @property()
   body: string;
 
-  constructor(body: string) {
+  constructor(title: string, body: string) {
     super();
+    this.title = title;
     this.body = body;
   }
 
@@ -16,6 +20,12 @@ export default class Note extends Persistable(Supertype) {
     this.setDirty(txn);
     await this.amorphic.commit({ transaction: txn });
     return this;
+  }
+
+  public async update(title: string, body: string) {
+    this.title = title;
+    this.body = body;
+    return await this.save();
   }
 
   public async delete() {

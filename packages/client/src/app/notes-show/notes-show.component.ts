@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Note } from '../models';
@@ -15,6 +15,7 @@ export class NotesShowComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private noteService: NoteService,
     private location: Location
   ) { }
@@ -30,13 +31,12 @@ export class NotesShowComponent implements OnInit {
   }
 
   save(): void {
-    this.noteService.updateNote(this.note)
-      .subscribe(() => this.goBack());
+    this.noteService.updateNote(this.note).subscribe();
   }
 
   delete(): void {
     this.noteService.deleteNote(this.note)
-      .subscribe(() => this.goBack());
+      .subscribe(() => this.router.navigate(['notes']));
   }
 
   goBack(): void {

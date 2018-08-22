@@ -8,8 +8,8 @@ const notesRouter = express.Router();
 notesRouter
   // CREATE:
   .post('/', async (req: Request, res: Response) => {
-    const reqBody: Note = req.body;
-    let note = new Note(reqBody.body);
+    const { title, body } = req.body as Note;
+    let note = new Note(title, body);
     note = await note.save();
     return res.json(note.serialize());
   })
@@ -27,12 +27,9 @@ notesRouter
   // UPDATE:
   .put('/:id', async (req: Request, res: Response) => {
     const id: string = req.params.id;
-    const reqBody: Note = req.body;
-
+    const { title, body } = req.body as Note;
     let note: Note = await Note.find(id);
-    note.body = reqBody.body;
-    await note.save();
-
+    note = await note.update(title, body);
     return res.json(note.serialize());
   })
   // DESTROY:
