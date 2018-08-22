@@ -1,8 +1,6 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/notes">Notes</a>
-  <a routerLink="/notes/new">Create a New Note</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<app-navbar></app-navbar>
+<div class="container">
+  <h1>{{title}}</h1>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+</div>

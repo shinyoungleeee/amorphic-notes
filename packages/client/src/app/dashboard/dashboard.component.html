@@ -1,9 +1,6 @@
 <h3>Top Notes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let note of notes" class="col-1-4"
-    routerLink="/notes/{{note._id}}">
-    <div class="module note">
-      <h4>{{note.body}}</h4>
-    </div>
+<div>
+  <a *ngFor="let note of notes" routerLink="/notes/{{note._id}}">
+    <h4>{{note.body}}</h4>
   </a>
 </div>
