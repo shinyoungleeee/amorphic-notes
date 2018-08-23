@@ -7,7 +7,8 @@ import {
     MatButtonModule,
     MatGridListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotesNewComponent } from './notes-new/notes-new.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthorsNewComponent } from './authors-new/authors-new.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,8 @@ import { NavbarComponent } from './navbar/navbar.component';
         MessagesComponent,
         DashboardComponent,
         NotesNewComponent,
-        NavbarComponent
+        NavbarComponent,
+        AuthorsNewComponent
     ],
     imports: [
         BrowserModule,
@@ -38,7 +41,8 @@ import { NavbarComponent } from './navbar/navbar.component';
         MatButtonModule,
         MatGridListModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        MatSelectModule
     ],
     providers: [],
     bootstrap: [AppComponent]
