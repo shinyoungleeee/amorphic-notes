@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Note } from './models';
@@ -17,9 +17,9 @@ export class NoteService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-  ) { }
+  ) {}
 
-  private notesUrl = 'api/v1/notes';  // URL to web api
+  private notesUrl = 'api/v1/notes'; // URL to web api
 
   /** Log a NoteService message with the MessageService */
   private log(message: string) {
@@ -34,7 +34,6 @@ export class NoteService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
@@ -57,11 +56,10 @@ export class NoteService {
 
   /** GET notes from the server */
   getNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(this.notesUrl)
-      .pipe(
-        tap(_ => this.log('fetched notes')),
-        catchError(this.handleError('getNotes', []))
-      );
+    return this.http.get<Note[]>(this.notesUrl).pipe(
+      tap(_ => this.log('fetched notes')),
+      catchError(this.handleError('getNotes', []))
+    );
   }
 
   /** GET note by id. Will 404 if id not found */
@@ -82,12 +80,12 @@ export class NoteService {
     );
   }
 
-    /** POST: create the note on the server */
-    deleteNote(note: Note): Observable<Note> {
-      const url = `${this.notesUrl}/${note._id}`;
-      return this.http.delete<Note>(url, httpOptions).pipe(
-        tap(_ => this.log(`deleted note id=${note._id}`)),
-        catchError(this.handleError<any>('deleteNote'))
-      );
-    }
+  /** DELETE: destroy the note on the server */
+  deleteNote(note: Note): Observable<Note> {
+    const url = `${this.notesUrl}/${note._id}`;
+    return this.http.delete<Note>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted note id=${note._id}`)),
+      catchError(this.handleError<any>('deleteNote'))
+    );
+  }
 }

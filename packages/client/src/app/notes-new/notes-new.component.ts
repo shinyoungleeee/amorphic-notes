@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Note } from '../models';
+import { Note, Author } from '../models';
 import { NoteService } from '../note.service';
+import { AuthorService } from '../author.service';
 
 @Component({
   selector: 'app-notes-new',
@@ -13,14 +14,23 @@ import { NoteService } from '../note.service';
 export class NotesNewComponent implements OnInit {
   @Input() note: Note;
 
+  authors: Author[];
+
   constructor(
     private router: Router,
     private noteService: NoteService,
+    private authorService: AuthorService,
     private location: Location
   ) { }
 
   ngOnInit(): void {
     this.note = new Note();
+    this.getAuthors();
+  }
+
+  getAuthors(): void {
+    this.authorService.getAuthors()
+      .subscribe(authors => this.authors = authors);
   }
 
   save(): void {

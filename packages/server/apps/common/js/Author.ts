@@ -1,28 +1,19 @@
 import { Supertype, supertypeClass, property, Persistable } from 'amorphic';
 
 import AmorphicSerializer from './AmorphicSerializer';
-import Author from './Author';
+import Note from './Note';
 
 @supertypeClass
-export default class Note extends Persistable(Supertype) {
+export default class Author extends Persistable(Supertype) {
   @property()
-  title: string;
+  name: string;
 
-  @property()
-  body: string;
+  @property({ type: Array, applicationOmit: true, getType: () => Note })
+  notes: Array<Note> = [];
 
-  @property({ getType: () => Author })
-  author: Author;
-
-  constructor(title: string, body: string, author: Author) {
+  constructor(name: string) {
     super();
-    this.set(title, body, author);
-  }
-
-  private set(title: string, body: string, author: Author) {
-    this.title = title;
-    this.body = body;
-    this.author = author;
+    this.name = name;
   }
 
   public async save() {
@@ -32,8 +23,8 @@ export default class Note extends Persistable(Supertype) {
     return this;
   }
 
-  public async update(title: string, body: string, author: Author) {
-    this.set(title, body, author);
+  public async update(name: string) {
+    this.name = name;
     return await this.save();
   }
 
